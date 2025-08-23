@@ -92,6 +92,9 @@ java {
     // if it is present.
     // If you remove this line, sources will not be generated.
     withSourcesJar()
+
+    sourceCompatibility = 17
+    targetCompatibility = 17
 }
 
 jar {
