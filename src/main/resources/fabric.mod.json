@@ -8,7 +8,7 @@
     "Yancey"
   ],
   "contact": {},
-  "license": "ARR",
+  "license": "MIT",
   "icon": "assets/bbsaekeyframe/icon.png",
   "environment": "*",
   "entrypoints": {},
