@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "bbsaekeyframe",
   "version": "${version}",
-  "name": "BBS mod plugin: AE keyframe",
+  "name": "BBS AE Keyframe Addon",
   "description": "A simple bbs mod plugin to get Adobe After Effects keyframe",
   "authors": [
     "Yancey"
