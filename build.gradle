@@ -3,7 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
-version = project.mod_version
+version = 'mc' + project.minecraft_version + "+bbs" + project.bbs_version + "+" + project.mod_version
 group = project.maven_group
 
 base {
@@ -55,7 +55,7 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "maven.modrinth:bbs-mod:1.4.4-1.20.4"
+    modImplementation "maven.modrinth:bbs-mod:$project.bbs_version-$project.minecraft_version"
 }
 
 processResources {

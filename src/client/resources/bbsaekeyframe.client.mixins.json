@@ -4,6 +4,7 @@
   "package": "yancey.bbsaekeyframe.mixin.client",
   "compatibilityLevel": "JAVA_17",
   "client": [
+    "VideoRecorderMixin",
     "UIFilmPreviewMixin"
   ],
   "injectors": {
