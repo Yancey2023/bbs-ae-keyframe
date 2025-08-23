@@ -1,7 +1,9 @@
 /**
  * Copyright (c) 2025 Yancey
  * Licensed under the MIT License
- */package yancey.bbsaekeyframe.mixin.client;
+ */
+
+package yancey.bbsaekeyframe.mixin.client;
 
 import mchorse.bbs_mod.BBSModClient;
 import mchorse.bbs_mod.client.BBSRendering;
