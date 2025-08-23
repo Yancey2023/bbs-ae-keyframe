@@ -38,8 +38,8 @@ public class UIFilmPreviewMixin {
             ))
     private void addCopyAEKeyframeMenu(UIFilmPanel filmPanel, CallbackInfo ci) {
         recordVideo.context(menu -> menu.action(Icons.COPY, FILM_COPY_AE_KEYFRAME, () -> {
-            if (AEKeyframeGenerator.lastKeyFrameStr != null) {
-                ClipboardUtil.setClipboard(AEKeyframeGenerator.lastKeyFrameStr);
+            if (AEKeyframeGenerator.lastKeyframeStr != null) {
+                ClipboardUtil.setClipboard(AEKeyframeGenerator.lastKeyframeStr);
             }
         }));
     }
