@@ -22,7 +22,7 @@ import java.nio.charset.StandardCharsets;
 
 public class AEKeyframeUtil {
 
-    public static final IKey FILM_COPT_AE_KEYFRAME = new StringKey("Copy AE keyframe");
+    public static final IKey FILM_COPY_AE_KEYFRAME = new StringKey("Copy AE keyframe");
 
     public static void copyAEKeyframe(Clips clips, Camera camera) {
         setClipboard(getAEKeyframe(clips, camera));
@@ -107,7 +107,6 @@ public class AEKeyframeUtil {
         aeKeyframeData.append("End of Keyframe Data\n");
         return aeKeyframeData.toString();
     }
-
 
     public static void setClipboard(String text) {
         if (Util.getOperatingSystem() == Util.OperatingSystem.WINDOWS) {

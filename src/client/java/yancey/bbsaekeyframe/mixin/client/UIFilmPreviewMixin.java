@@ -26,7 +26,7 @@ public class UIFilmPreviewMixin {
                     shift = At.Shift.AFTER
             ))
     private void addCopyAEKeyframeMenu(UIFilmPanel filmPanel, CallbackInfo ci) {
-        recordVideo.context(menu -> menu.action(Icons.COPY, AEKeyframeUtil.FILM_COPT_AE_KEYFRAME,
+        recordVideo.context(menu -> menu.action(Icons.COPY, AEKeyframeUtil.FILM_COPY_AE_KEYFRAME,
                 () -> AEKeyframeUtil.copyAEKeyframe(filmPanel.getData().camera, filmPanel.getCamera())));
     }
 
