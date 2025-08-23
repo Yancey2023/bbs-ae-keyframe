@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "yancey.bbsaekeyframe.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "UIFilmPreviewMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
