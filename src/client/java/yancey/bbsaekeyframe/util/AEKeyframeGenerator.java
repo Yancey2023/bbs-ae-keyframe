@@ -28,11 +28,12 @@ public class AEKeyframeGenerator {
     public void startRecording(Path path, int videoWidth, int videoHeight, double frameRate) {
         this.path = path;
         this.videoHeight = videoHeight;
-        aeKeyframeStr = new StringBuilder();
-        zoomStr = new StringBuilder();
-        expressionStr = new StringBuilder();
-        orientationStr = new StringBuilder();
-        positionStr = new StringBuilder();
+        this.aeKeyframeStr = new StringBuilder();
+        this.zoomStr = new StringBuilder();
+        this.expressionStr = new StringBuilder();
+        this.orientationStr = new StringBuilder();
+        this.positionStr = new StringBuilder();
+        this.count = 0;
         aeKeyframeStr.append("Adobe After Effects 8.0 Keyframe Data\n");
         aeKeyframeStr.append(String.format("\tUnits Per Second\t%.2f\n", frameRate));
         aeKeyframeStr.append(String.format("\tSource Width\t%d\n", videoWidth));
@@ -59,7 +60,6 @@ public class AEKeyframeGenerator {
                 """);
         orientationStr.append("Transform\tOrientation\n\tFrame\n");
         positionStr.append("Transform\tPosition\n\tFrame\n");
-        count = 0;
     }
 
     public void stopRecording() {
