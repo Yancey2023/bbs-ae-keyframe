@@ -55,7 +55,7 @@ dependencies {
 
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
-    modImplementation "maven.modrinth:bbs-mod:1.4.4-1.20.4"
+    modImplementation "maven.modrinth:bbs-mod:1.4.4-1.20.1"
 }
 
 processResources {
