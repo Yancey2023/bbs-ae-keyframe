@@ -12,6 +12,8 @@ A simple bbs mod addon to get Adobe After Effects keyframe.
 
 - **Step2:** right-click the record video button, then you can find the copy button:
 
+> Note: The copy button is use for copy the AE keyframe in latest exported video.
+
 ![img.png](img/copy_ae_keyframe.png)
 
 # About
