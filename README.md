@@ -2,15 +2,19 @@
 
 A simple bbs mod addon to get Adobe After Effects keyframe.
 
-> **Note**: This addon is in tested, so it may have some bugs.
+> **Note**: This addon is currently in testing and may contain some bugs.
 
 ## Usage
 
-- **Step1:** export a video, then you can find an AE keyframe txt file in the video folder:
+- **Step 1:** Export a video, then you will find an AE keyframe txt file in the video folder:
+
+> Note: Do not copy the txt directly from Notepad, as it cannot be pasted into AE. Instead, use Step 2 or another program such as VSCode to copy the content.
 
 ![img.png](img/ae_keyframe_txt.png)
 
-- **Step2:** right-click the record video button, then you can find the copy button:
+- **Step 2:** Right-click the record video button to find the copy option:
+
+> Note: The copy button is used to copy the AE keyframe from the most recently exported video.
 
 ![img.png](img/copy_ae_keyframe.png)
 

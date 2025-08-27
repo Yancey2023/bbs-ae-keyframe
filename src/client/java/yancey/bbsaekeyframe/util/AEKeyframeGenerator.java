@@ -5,22 +5,21 @@
 
 package yancey.bbsaekeyframe.util;
 
+import com.mojang.logging.LogUtils;
 import mchorse.bbs_mod.camera.Camera;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
+import org.slf4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class AEKeyframeGenerator {
 
-    public static Logger LOGGER = Logger.getLogger("AEKeyframeGenerator");
-    @Nullable
-    public static String lastKeyFrameStr = null;
+    private static final Logger LOGGER = LogUtils.getLogger();
+    public static @Nullable String lastKeyframeStr = null;
     private int videoHeight;
     private Path path;
     private StringBuilder aeKeyframeStr, zoomStr, expressionStr, orientationStr, positionStr;
@@ -29,11 +28,12 @@ public class AEKeyframeGenerator {
     public void startRecording(Path path, int videoWidth, int videoHeight, double frameRate) {
         this.path = path;
         this.videoHeight = videoHeight;
-        aeKeyframeStr = new StringBuilder();
-        zoomStr = new StringBuilder();
-        expressionStr = new StringBuilder();
-        orientationStr = new StringBuilder();
-        positionStr = new StringBuilder();
+        this.aeKeyframeStr = new StringBuilder();
+        this.zoomStr = new StringBuilder();
+        this.expressionStr = new StringBuilder();
+        this.orientationStr = new StringBuilder();
+        this.positionStr = new StringBuilder();
+        this.count = 0;
         aeKeyframeStr.append("Adobe After Effects 8.0 Keyframe Data\n");
         aeKeyframeStr.append(String.format("\tUnits Per Second\t%.2f\n", frameRate));
         aeKeyframeStr.append(String.format("\tSource Width\t%d\n", videoWidth));
@@ -60,7 +60,6 @@ public class AEKeyframeGenerator {
                 """);
         orientationStr.append("Transform\tOrientation\n\tFrame\n");
         positionStr.append("Transform\tPosition\n\tFrame\n");
-        count = 0;
     }
 
     public void stopRecording() {
@@ -69,11 +68,11 @@ public class AEKeyframeGenerator {
         aeKeyframeStr.append(orientationStr);
         aeKeyframeStr.append(positionStr);
         aeKeyframeStr.append("End of Keyframe Data\n");
-        lastKeyFrameStr = aeKeyframeStr.toString();
+        lastKeyframeStr = aeKeyframeStr.toString();
         try {
-            Files.writeString(path, lastKeyFrameStr);
+            Files.writeString(path, lastKeyframeStr);
         } catch (IOException e) {
-            LOGGER.log(Level.WARNING, "Failed to write keyframe data to file", e);
+            LOGGER.warn("Failed to write keyframe data to file", e);
         }
     }
 
