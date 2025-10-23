@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import yancey.bbsaekeyframe.util.AEKeyframeGenerator;
 
 @Mixin(value = VideoRecorder.class, remap = false)
-public abstract class VideoRecorderMixin {
+public class VideoRecorderMixin {
 
     @Shadow
     private boolean recording;
