@@ -5,6 +5,7 @@
 
 package yancey.bbsaekeyframe.mixin.client;
 
+import mchorse.bbs_mod.graphics.window.Window;
 import mchorse.bbs_mod.l10n.keys.IKey;
 import mchorse.bbs_mod.l10n.keys.StringKey;
 import mchorse.bbs_mod.ui.film.UIFilmPreview;
@@ -18,7 +19,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import yancey.bbsaekeyframe.util.AEKeyframeGenerator;
-import yancey.bbsaekeyframe.util.ClipboardUtil;
 
 @Mixin(value = UIFilmPreview.class, remap = false)
 public class UIFilmPreviewMixin {
@@ -33,7 +33,7 @@ public class UIFilmPreviewMixin {
     private void addCopyAEKeyframeMenu(UIElement instance, IUIElement[] iuiElements) {
         recordVideo.context(menu -> menu.action(Icons.COPY, FILM_COPY_AE_KEYFRAME, () -> {
             if (AEKeyframeGenerator.lastKeyframeStr != null) {
-                ClipboardUtil.setClipboard(AEKeyframeGenerator.lastKeyframeStr);
+                Window.setClipboard(AEKeyframeGenerator.lastKeyframeStr);
             }
         }));
         instance.add(iuiElements);
