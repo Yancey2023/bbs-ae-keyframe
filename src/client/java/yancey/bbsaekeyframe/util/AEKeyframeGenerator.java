@@ -19,6 +19,7 @@ import java.nio.file.Path;
 public class AEKeyframeGenerator {
 
     private static final Logger LOGGER = LogUtils.getLogger();
+    private static final String LINE_SEPARATOR = System.lineSeparator();
     public static @Nullable String lastKeyframeStr = null;
     private int videoHeight;
     private Path path;
@@ -34,32 +35,28 @@ public class AEKeyframeGenerator {
         this.orientationStr = new StringBuilder();
         this.positionStr = new StringBuilder();
         this.count = 0;
-        aeKeyframeStr.append("Adobe After Effects 8.0 Keyframe Data\n");
-        aeKeyframeStr.append(String.format("\tUnits Per Second\t%.2f\n", frameRate));
-        aeKeyframeStr.append(String.format("\tSource Width\t%d\n", videoWidth));
-        aeKeyframeStr.append(String.format("\tSource Height\t%d\n", videoHeight));
-        aeKeyframeStr.append("""
-                \tSource Pixel Aspect Ratio\t1
-                \tComp Pixel Aspect Ratio\t1
-                """);
-        zoomStr.append("Camera Options\tZoom\n\tFrame\n");
-        expressionStr.append("""
-                Expression Data
-                // Keep fov value when scaling composite.
-                """);
-        expressionStr.append(String.format("thisComp.height / %d * cameraOption.zoom\n", videoHeight));
-        expressionStr.append("""
-                End of Expression Data
-                Transform\tPoint of Interest
-                \tFrame
-                \t\t0\t0\t0
-                Expression Data
-                // These tracking data only support one-node camera
-                transform.position
-                End of Expression Data
-                """);
-        orientationStr.append("Transform\tOrientation\n\tFrame\n");
-        positionStr.append("Transform\tPosition\n\tFrame\n");
+        aeKeyframeStr.append("Adobe After Effects 8.0 Keyframe Data").append(LINE_SEPARATOR);
+        aeKeyframeStr.append("\tUnits Per Second\t").append(frameRate).append(LINE_SEPARATOR);
+        aeKeyframeStr.append("\tSource Width\t").append(videoWidth).append(LINE_SEPARATOR);
+        aeKeyframeStr.append("\tSource Height\t").append(videoWidth).append(LINE_SEPARATOR);
+        aeKeyframeStr.append("\tSource Pixel Aspect Ratio\t1").append(LINE_SEPARATOR);
+        aeKeyframeStr.append("\tComp Pixel Aspect Ratio\t1").append(LINE_SEPARATOR);
+        zoomStr.append("Camera Options\tZoom").append(LINE_SEPARATOR).append("\tFrame").append(LINE_SEPARATOR);
+        expressionStr.append("Expression Data").append(LINE_SEPARATOR);
+        expressionStr.append("// Keep fov value when scaling composite.").append(LINE_SEPARATOR);
+        expressionStr.append("thisComp.height / ").append(videoHeight).append(" * cameraOption.zoom").append(LINE_SEPARATOR);
+        expressionStr.append("End of Expression Data").append(LINE_SEPARATOR);
+        expressionStr.append("Transform\tPoint of Interest").append(LINE_SEPARATOR);
+        expressionStr.append("\tFrame").append(LINE_SEPARATOR);
+        expressionStr.append("\t\t0\t0\t0").append(LINE_SEPARATOR);
+        expressionStr.append("Expression Data").append(LINE_SEPARATOR);
+        expressionStr.append("// These tracking data only support one-node camera").append(LINE_SEPARATOR);
+        expressionStr.append("transform.position").append(LINE_SEPARATOR);
+        expressionStr.append("End of Expression Data").append(LINE_SEPARATOR);
+        orientationStr.append("Transform\tOrientation").append(LINE_SEPARATOR);
+        orientationStr.append("\tFrame").append(LINE_SEPARATOR);
+        positionStr.append("Transform\tPosition").append(LINE_SEPARATOR);
+        positionStr.append("\tFrame").append(LINE_SEPARATOR);
     }
 
     public void stopRecording() {
@@ -67,7 +64,7 @@ public class AEKeyframeGenerator {
         aeKeyframeStr.append(expressionStr);
         aeKeyframeStr.append(orientationStr);
         aeKeyframeStr.append(positionStr);
-        aeKeyframeStr.append("End of Keyframe Data\n");
+        aeKeyframeStr.append("End of Keyframe Data").append(LINE_SEPARATOR);
         lastKeyframeStr = aeKeyframeStr.toString();
         try {
             Files.writeString(path, lastKeyframeStr);
@@ -81,7 +78,7 @@ public class AEKeyframeGenerator {
         // make sure 1 unit in AE equal 1 block in minecraft
         zoomStr.append('\t').append(count).append('\t')
                 .append((videoHeight / 2.0) / Math.tan(camera.fov / 2))
-                .append('\n');
+                .append(LINE_SEPARATOR);
 
         // Orientation
         Matrix4f mat = new Matrix4f()
@@ -97,14 +94,14 @@ public class AEKeyframeGenerator {
                 .append('\t').append(Math.toDegrees(rotation.x))
                 .append('\t').append(Math.toDegrees(rotation.y))
                 .append('\t').append(Math.toDegrees(rotation.z))
-                .append('\n');
+                .append(LINE_SEPARATOR);
 
         // Position
         positionStr.append('\t').append(count)
                 .append('\t').append(camera.position.x)
                 .append('\t').append(camera.position.y)
                 .append('\t').append(camera.position.z)
-                .append('\n');
+                .append(LINE_SEPARATOR);
 
         count++;
     }
