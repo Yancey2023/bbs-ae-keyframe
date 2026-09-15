@@ -43,12 +43,8 @@ dependencies {
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
-	if (project.minecraft_version == "1.21.11") {
-		modImplementation "maven.modrinth:bbs-fs:${project.bbs_fs_version}-${project.minecraft_version}"
-	} else {
-		modImplementation "maven.modrinth:bbs-mod:${project.bbs_version}-${project.minecraft_version}"
-		modCompileOnly "maven.modrinth:bbs-fs:${project.bbs_fs_version}-${project.minecraft_version}"
-	}
+	modImplementation "maven.modrinth:bbs-mod:${project.bbs_version}-${project.minecraft_version}"
+//	modImplementation "maven.modrinth:bbs-fs:${project.bbs_fs_version}-${project.minecraft_version}"
 }
 
 processResources {

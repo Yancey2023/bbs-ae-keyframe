@@ -55,8 +55,8 @@ public class VideoRecorderFsMixin {
         }
     }
 
-    @Inject(method = "stopRecording()V", at = @At("HEAD"))
-    private void injectStopRecording(CallbackInfo ci) {
+    @Inject(method = "stopRecording(Z)V", at = @At("HEAD"))
+    private void injectStopRecording(boolean finishEffects, CallbackInfo ci) {
         if (recording && BBSModClient.getCameraController().getCurrent() != null) {
             aeKeyframeGenerator.stopRecording();
         }
