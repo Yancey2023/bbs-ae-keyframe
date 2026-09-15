@@ -18,19 +18,34 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import yancey.bbsaekeyframe.util.AEKeyframeGenerator;
 
+import java.io.File;
+
 @Mixin(value = VideoRecorder.class, remap = false)
-public class VideoRecorderMixin {
+public class VideoRecorderFsMixin {
 
     @Shadow
     private boolean recording;
 
     @Unique
-    AEKeyframeGenerator aeKeyframeGenerator = new AEKeyframeGenerator();
+    private final AEKeyframeGenerator aeKeyframeGenerator = new AEKeyframeGenerator();
+
+    @Inject(method = "startRecording", at = @At("HEAD"))
+    private void injectStartRecording(String movieName, File audioFile, int textureId, int width, int height, CallbackInfo ci) {
+        if (movieName != null && !movieName.isEmpty()) {
+            startKeyframeRecording(movieName);
+        }
+    }
 
     @Redirect(method = "startRecording", at = @At(value = "INVOKE", target = "Lmchorse/bbs_mod/utils/StringUtils;createTimestampFilename()Ljava/lang/String;"))
-    public String injectStartRecording() {
+    private String injectGeneratedMovieName() {
         String movieName = StringUtils.createTimestampFilename();
-        if (BBSModClient.getCameraController().getCurrent() != null) {
+        startKeyframeRecording(movieName);
+        return movieName;
+    }
+
+    @Unique
+    private void startKeyframeRecording(String movieName) {
+        if (!recording && BBSModClient.getCameraController().getCurrent() != null) {
             aeKeyframeGenerator.startRecording(
                     BBSRendering.getVideoFolder().toPath().resolve(movieName + ".aekeyframe.txt"),
                     BBSRendering.getVideoWidth(),
@@ -38,21 +53,19 @@ public class VideoRecorderMixin {
                     BBSRendering.getVideoFrameRate()
             );
         }
-        return movieName;
     }
 
-    @Inject(method = "stopRecording()V", at = @At(value = "HEAD"))
-    public void injectStopRecording(CallbackInfo ci) {
+    @Inject(method = "stopRecording()V", at = @At("HEAD"))
+    private void injectStopRecording(CallbackInfo ci) {
         if (recording && BBSModClient.getCameraController().getCurrent() != null) {
             aeKeyframeGenerator.stopRecording();
         }
     }
 
-    @Inject(method = "recordFrame()V", at = @At(value = "HEAD"))
-    public void injectRecordFrame(CallbackInfo ci) {
+    @Inject(method = "recordFrame()V", at = @At("HEAD"))
+    private void injectRecordFrame(CallbackInfo ci) {
         if (recording && BBSModClient.getCameraController().getCurrent() != null) {
             aeKeyframeGenerator.recordFrame(BBSModClient.getCameraController().camera);
         }
     }
-
 }

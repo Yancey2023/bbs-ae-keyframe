@@ -2,8 +2,10 @@
   "required": true,
   "package": "yancey.bbsaekeyframe.mixin.client",
   "compatibilityLevel": "JAVA_17",
+  "plugin": "yancey.bbsaekeyframe.mixin.client.BBSCompatibilityMixinPlugin",
   "client": [
     "VideoRecorderMixin",
+    "VideoRecorderFsMixin",
     "UIFilmPreviewMixin"
   ],
   "injectors": {
