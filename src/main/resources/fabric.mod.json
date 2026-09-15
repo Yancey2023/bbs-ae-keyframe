@@ -19,7 +19,7 @@
     }
   ],
   "depends": {
-    "minecraft": "1.21.1",
+    "minecraft": "*",
     "fabric": "*",
     "fabricloader": "*",
     "bbs": "*"
