@@ -16,7 +16,7 @@ repositories {
                 url = "https://api.modrinth.com/maven"
             }
         }
-        // forRepositories(fg.repository) // Only add this if you're using ForgeGradle, otherwise remove this line
+        // forRepositories(fg.repository) // Uncomment when using ForgeGradle
         filter {
             includeGroup "maven.modrinth"
         }

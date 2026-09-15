@@ -38,7 +38,7 @@ public class AEKeyframeGenerator {
         aeKeyframeStr.append("Adobe After Effects 8.0 Keyframe Data").append(LINE_SEPARATOR);
         aeKeyframeStr.append("\tUnits Per Second\t").append(frameRate).append(LINE_SEPARATOR);
         aeKeyframeStr.append("\tSource Width\t").append(videoWidth).append(LINE_SEPARATOR);
-        aeKeyframeStr.append("\tSource Height\t").append(videoWidth).append(LINE_SEPARATOR);
+        aeKeyframeStr.append("\tSource Height\t").append(videoHeight).append(LINE_SEPARATOR);
         aeKeyframeStr.append("\tSource Pixel Aspect Ratio\t1").append(LINE_SEPARATOR);
         aeKeyframeStr.append("\tComp Pixel Aspect Ratio\t1").append(LINE_SEPARATOR);
         zoomStr.append("Camera Options\tZoom").append(LINE_SEPARATOR).append("\tFrame").append(LINE_SEPARATOR);

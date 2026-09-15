@@ -30,13 +30,13 @@ public class UIFilmPreviewMixin {
     public UIIcon recordVideo;
 
     @Redirect(method = "<init>", at = @At(value = "INVOKE", target = "Lmchorse/bbs_mod/ui/framework/elements/UIElement;add([Lmchorse/bbs_mod/ui/framework/elements/IUIElement;)V"))
-    private void addCopyAEKeyframeMenu(UIElement instance, IUIElement[] iuiElements) {
+    private void addCopyAEKeyframeMenu(UIElement instance, IUIElement[] elements) {
         recordVideo.context(menu -> menu.action(Icons.COPY, FILM_COPY_AE_KEYFRAME, () -> {
             if (AEKeyframeGenerator.lastKeyframeStr != null) {
                 Window.setClipboard(AEKeyframeGenerator.lastKeyframeStr);
             }
         }));
-        instance.add(iuiElements);
+        instance.add(elements);
     }
 
 }
